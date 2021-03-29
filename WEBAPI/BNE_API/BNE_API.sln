@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BNE_API", "BNE_API\BNE_API.csproj", "{005A7DC6-162C-4E20-AA53-2B401E3A995A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BNEAPITEST", "BNEAPITEST\BNEAPITEST.csproj", "{27F81280-D919-40CF-9BF0-4FA46A235204}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{005A7DC6-162C-4E20-AA53-2B401E3A995A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{005A7DC6-162C-4E20-AA53-2B401E3A995A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{005A7DC6-162C-4E20-AA53-2B401E3A995A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{005A7DC6-162C-4E20-AA53-2B401E3A995A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F81280-D919-40CF-9BF0-4FA46A235204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F81280-D919-40CF-9BF0-4FA46A235204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F81280-D919-40CF-9BF0-4FA46A235204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F81280-D919-40CF-9BF0-4FA46A235204}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8BACC4FE-5A2F-41A4-880C-CDB801F4187E}
+	EndGlobalSection
+EndGlobal

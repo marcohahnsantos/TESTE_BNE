@@ -1,0 +1,194 @@
+﻿@model PedidosModel
+@using PagedList;
+@using PagedList.Core.Mvc;
+@using cloudscribe.Web.Pagination
+@using BNE.Util;
+
+<link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+@*<style>
+        body {
+            background-image: url('../../images/Bg.png')
+        }
+    </style>*@
+<style>
+    body {
+        background-color: #FFFFFF;
+    }
+</style>
+
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:25px; padding:15px;width:1000px;">
+
+    <h2>Meus Pedidos</h2>
+    <form asp-controller="Pedidos" asp-action="CriarPedidos">
+        <table Border="2" align="center">
+            <thead>
+                <tr style="background-color: cadetblue">
+                    <td width=450><label>Produtos</label></td>
+                    <td width=250><label>Quantidade</label></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                        
+                    <td width=450>
+                        <select asp-for="id" class="form-control">
+                            @{
+                                foreach (var item in (List<ProdutosModel>)ViewBag.ListaProdutos)
+                                {
+                                    <option value="@item.Id.ToString()">@item.Nome.ToString()</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td width=220>
+                        <select asp-for="quantidade" class="form-control">
+                            @{
+
+                                foreach (var item in (List<string>)ViewBag.ListaQuantidade)
+                                {
+
+                                    if (item.ToString() != "1")
+                                    {
+                                        <option value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                    else
+                                    {
+                                        <option selected="selected" value="@item.ToString()">@item.ToString()</option>
+                                    }
+                                }
+
+                            }
+                        </select>
+                    </td>
+                 </tr>
+            </tbody>
+        </table>
+        <div class="container"  style="background-color:rgba(239,239,239,0.95); border-radius:5px;width:500px">
+    <table class="table table-bordered">
+        <tbody>
+            <tr height=5>
+                @*<td top:50%><button type="button" class="btn btn-block btn-primary" onclick="RegistrarTransacao()">Registrar Transação</button></td>*@
+                <td style="width:50px"><button type="submit" class="btn btn-block btn-success">     Registrar Pedido      </button></td>
+                <td top:50%><button type="button" class="btn btn-block btn-primary" onclick="Voltar()">Voltar</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</form>
+</div>
+<br />
+
+<br />
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:25px; padding:15px;width:1200px;">
+
+    <form asp-controller="Pedidos" asp-action="Registrar">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>#</th>
+                    <th>Codigo</th>
+                    <th>Data</th>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                </tr>
+            </thead>
+            @{
+                foreach (var item in (List<TransacaoModel>)ViewBag.ListaTransacao)
+                {
+                    <tbody>
+                    <tr>
+                        <td><button type="button" class="btn btn-success" onclick="Editar(@item.Id.ToString())">Editar</button></td>
+                        <td><button type="button" class="btn btn-danger" onclick="Excluir(@item.Id.ToString())">Excluir</button></td>
+                        <td>@item.Id.ToString()</td>
+                        <td>@item.Data.ToString()</td>
+                        <td >@item.Nome_Produto.ToString()</td>
+                        <td align="right">@item.Quantidade.ToString("N")</td>
+                        <td align="right">@item.Valor.ToString("C")</td>
+                    </tr>
+                    </tbody>
+                }
+            }
+        </table>
+        @*<div>
+            <cs-pager cs-paging-pagesize="10"
+                      cs-paging-pagenumber="@ViewBag.CurrentPage"
+                      cs-paging-totalitems="@ViewBag.TotalItems"
+                      cs-pagenumber-param="page"
+                      cs-show-first-last="true"
+                      cs-suppress-empty-nextprev="true"
+                      cs-suppress-inactive-firstlast="true"
+                      cs-first-page-text="Primeiro"
+                      cs-last-page-text="Ultimo"
+                      cs-pager-li-current-class="active"
+                      cs-pager-li-non-active-class="disabled"
+                      asp-controller="Transacao"
+                      asp-action="Index">
+            </cs-pager>
+
+        </div>*@
+    </form>
+</div>
+
+
+@*<button type="button" class="btn btn-block btn-primary" onclick="RegistrarTransacao()">Registrar Transação</button>*@
+<script>
+
+    function verData_I(valor) {
+        var x = document.getElementById("DataSelI");
+        var Ano = "";
+        if (valor > 10) {
+            alert("Formato data invalida!");
+            if (valor = 11) {
+                var stringAno = x.value;
+                var stringMes = x.value;
+                var stringDia = x.value;
+                // var resultadoAno = stringExemplo.value.substring(0, 4);
+                var resultadoAno = stringMes.substring(0, 4)
+                var resultadoMes = stringMes.substring(6, 8)
+                var resultadoDia = stringDia.substring(9, 11)
+                var resultadoTotal = resultadoAno + "/" + resultadoMes + "/" + resultadoDia;
+                x.value = resultadoAno + "-" + resultadoMes + "-" + resultadoDia;
+            }
+
+        }
+            
+    }
+    function verData_F(valor) {
+        var x = document.getElementById("DataSelF");
+        var Ano = "";
+        if (valor > 10) {
+            alert("Formato data invalida!");
+            if (valor = 11) {
+                var stringAno = x.value;
+                var stringMes = x.value;
+                var stringDia = x.value;
+                // var resultadoAno = stringExemplo.value.substring(0, 4);
+                var resultadoAno = stringMes.substring(0, 4)
+                var resultadoMes = stringMes.substring(6, 8)
+                var resultadoDia = stringDia.substring(9, 11)
+                var resultadoTotal = resultadoAno + "/" + resultadoMes + "/" + resultadoDia;
+                x.value = resultadoAno + "-" + resultadoMes + "-" + resultadoDia;
+            }
+
+        }
+
+    }
+
+
+    function Voltar() {
+        window.location.href = "../Home/Menu"
+    }
+    function Excluir(id) {
+        window.location.href = "../Transacao/ExcluirTransacao/" + id;
+    }
+    function Editar(id) {
+        window.location.href = "../Transacao/Registrar/" + id;
+    }
+
+</script>
+
+
+

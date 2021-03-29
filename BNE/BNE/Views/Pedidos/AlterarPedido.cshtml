@@ -1,0 +1,169 @@
+﻿@model PedidosModel
+@using PagedList;
+@using PagedList.Core.Mvc;
+@using cloudscribe.Web.Pagination
+@using BNE.Util;
+
+@{
+    
+    var vNomeProduto = "";
+    var vQuantidade = "";
+    var vIdPedido = 0;
+    var vIdProduto = 0;
+
+
+    try
+    {
+        vIdPedido = ViewBag.IdPedido;
+        vIdProduto = ViewBag.IdProduto;
+        vNomeProduto = ViewBag.NomeProduto;
+        vQuantidade = ViewBag.Quantidade.ToString();
+    }
+    catch { }
+}
+
+<link href="~/css/PagedList.css" rel="stylesheet" type="text/css" />
+<style>
+    body {
+        background-color: #FFFFFF;
+    }
+</style>
+
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:25px; padding:15px;width:1000px;">
+
+    <h2>Meus Pedidos</h2>
+    
+    <form asp-controller="Pedidos" asp-action="AlterarRegistroPedido">
+        <input type="hidden" asp-for="id" value="@ViewBag.IdPedido" />
+        <table Border="2" align="center">
+            <thead>
+                <tr style="background-color: cadetblue">
+                    <td width=450><label>Produtos</label></td>
+                    <td width=250><label>Quantidade</label></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+
+                    <td width=450>
+                        <select asp-for="id_produto" class="form-control">
+                            @{
+                                try
+                                {
+                                    foreach (var item in (List<ProdutosModel>)ViewBag.ListaProdutos)
+                                    {
+                                        if (item.Nome.ToString() == vNomeProduto.ToString())
+                                        {
+                                            <option value="@item.Id.ToString()" selected>@item.Nome.ToString()</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id.ToString()">@item.Nome.ToString()</option>
+                                        }
+                                    }
+                                }
+                                catch (Exception erro)
+                                {
+
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td width=220>
+                        <select asp-for="quantidade" class="form-control">
+                            @{
+                                foreach (var item in (List<string>)ViewBag.ListaQuantidade)
+                                {
+
+                                    try
+                                    {
+                                        
+                                        if (item.ToString() == vQuantidade.ToString())
+                                        {
+                                            <option value="@item.ToString()" selected>@item.ToString()</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.ToString()">@item.ToString()</option>
+                                        }
+                                    }
+                                    catch (Exception erro)
+                                    {
+                                    }
+                                }
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:5px;width:500px">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr height=5>
+                        <td style="width:50px"><button type="submit" class="btn btn-block btn-success">Registrar Pedido</button></td>
+                        <td top:50%><button type="button" class="btn btn-block btn-primary" onclick="Voltar()">Voltar</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<br />
+
+
+
+@*<button type="button" class="btn btn-block btn-primary" onclick="RegistrarTransacao()">Registrar Transação</button>*@
+<script>
+
+    function verData_I(valor) {
+        var x = document.getElementById("DataSelI");
+        var Ano = "";
+        if (valor > 10) {
+            alert("Formato data invalida!");
+            if (valor = 11) {
+                var stringAno = x.value;
+                var stringMes = x.value;
+                var stringDia = x.value;
+                // var resultadoAno = stringExemplo.value.substring(0, 4);
+                var resultadoAno = stringMes.substring(0, 4)
+                var resultadoMes = stringMes.substring(6, 8)
+                var resultadoDia = stringDia.substring(9, 11)
+                var resultadoTotal = resultadoAno + "/" + resultadoMes + "/" + resultadoDia;
+                x.value = resultadoAno + "-" + resultadoMes + "-" + resultadoDia;
+            }
+
+        }
+
+    }
+    function verData_F(valor) {
+        var x = document.getElementById("DataSelF");
+        var Ano = "";
+        if (valor > 10) {
+            alert("Formato data invalida!");
+            if (valor = 11) {
+                var stringAno = x.value;
+                var stringMes = x.value;
+                var stringDia = x.value;
+                // var resultadoAno = stringExemplo.value.substring(0, 4);
+                var resultadoAno = stringMes.substring(0, 4)
+                var resultadoMes = stringMes.substring(6, 8)
+                var resultadoDia = stringDia.substring(9, 11)
+                var resultadoTotal = resultadoAno + "/" + resultadoMes + "/" + resultadoDia;
+                x.value = resultadoAno + "-" + resultadoMes + "-" + resultadoDia;
+            }
+
+        }
+
+    }
+
+
+    function Voltar() {
+        window.location.href = "/Home/Menu"
+    }
+
+</script>
+
+
+

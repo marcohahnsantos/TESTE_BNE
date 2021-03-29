@@ -1,0 +1,2 @@
+https://localhost:44393/api/TarefaProduto
+https://localhost:44393/api/TarefaPedido

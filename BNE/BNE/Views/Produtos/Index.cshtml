@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    body {
+        background-color: #ffffff;
+    }
+</style>
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:1000px;">
+
+    <h3>Produtos</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>#</th>
+                <th>#</th>
+                <th>Codigo</th>
+                <th>Descrição</th>
+                <th>Valor</th>
+                <th>Ativo</th>
+
+            </tr>
+        </thead>
+        @{
+            foreach (var item in (List<ProdutosModel>)ViewBag.ListaProdutos)
+            {
+                <tbody>
+                            <tr>
+                                @{
+                                    if (@item.Id != 0)
+                                    {
+                                        <td style="width:100px"><button type="button" class="btn btn-success" onclick="Editar(@item.Id.ToString())">Editar</button></td>
+                                        <td style="width:100px"><button type="button" class="btn btn-danger" onclick="Excluir(@item.Id.ToString())">Excluir</button></td>
+                                        if (@item.Ativo == "SIM")
+                                        {
+                                            <td style="width:100px"><button type="button" class="btn btn-danger" onclick="Ativar(@item.Id.ToString())">Desativar</button></td>
+                                        }
+                                        else
+                                        {
+                                             <td style="width:100px"><button type="button" class="btn btn-danger" onclick="Desativar(@item.Id.ToString())">   Ativar   </button></td>
+                                        }
+                                        <td style="width:30px">@item.Id.ToString()</td>
+                                        <td>@item.Nome.ToString()</td>
+                                        <td>@item.Valor.ToString().Replace("R", "Receita / Entrada").Replace("D", "Despesa / Saída")</td>
+                                        <td>@item.Ativo.ToString().Replace("R", "Receita / Entrada").Replace("D", "Despesa / Saída")</td>
+                                    }
+                                }
+</tbody>
+            }
+        }
+    </table>
+    <div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:500px;">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width:50px"><button type="button" class="btn btn-block btn-primary" onclick="CriarProdutos()">Criar Produtos</button></td>
+                    <td style="width:50px"><button type="button" class="btn btn-block btn-primary" onclick="Voltar()">Voltar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    <script>
+        function CriarProdutos() {
+            window.location.href = "../Produtos/CriarProdutos"
+        }
+        function Excluir(id_conta) {
+            window.location.href = "../Produtos/Excluir/" + id_conta;
+        }
+        function Ativar(id_conta) {
+            window.location.href = "../Produtos/Desativar/" + id_conta;
+        }
+        function Desativar(id_conta) {
+            window.location.href = "../Produtos/Ativar/" + id_conta;
+        }
+        function Editar(id_conta) {
+            window.location.href = "../Produtos/CriarProdutos/" + id_conta;
+        }
+        function Voltar() {
+            window.location.href = "../Home/Menu"
+        }
+
+
+    </script>
+

@@ -1,0 +1,38 @@
+﻿@*<style>
+        body {
+            background-image: url('../../images/Bg.png')
+        }
+    </style>*@
+<style>
+    body {
+        background-color: #a03131;
+    }
+</style>
+
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:25px; padding:15px;width:400px;">
+
+    <h2>Erro de Processamento</h2>
+    <p><h4><strong>Contate o adminstrador de sistemas</strong></h4></p>
+  
+
+    <div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:350px;">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width:50px"><button type="button" onclick="Voltar()" class="btn btn-block btn-default">Voltar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script>
+        function Excluir(id) {
+            window.location.href = "../Excluir/" + id;
+
+        }
+        function Voltar() {
+            window.location.href = "../Transacao/Index";
+        }
+
+</script>

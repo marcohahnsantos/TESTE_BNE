@@ -1,0 +1,71 @@
+﻿@model ProdutosModel
+@{
+    ViewData["Title"] = "Criar Produtos";
+}
+
+<style>
+    body {
+        background-color: #ffffff;
+    }
+</style>
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:600px;">
+
+    <h3>Criar Produtos</h3>
+    
+    @{
+        var vNome = "";
+        var vValor = "";
+        var vId = 0;
+
+        try
+        {
+            vId = int.Parse(ViewBag.Registro.Id.ToString());
+            vNome = ViewBag.Registro.Nome.ToString();
+            vValor = ViewBag.Registro.Valor.ToString();
+        }
+        catch { }
+    }
+
+    <form asp-controller="Produtos" asp-action="CriarProdutos">
+        <input type="hidden" asp-for="Id" value="@vId" />
+        <div class="form-group">
+            <label>Nome:</label>
+            <input type="text" class="form-control" asp-for="Nome" value="@vNome" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label>Valor:</label>
+            <input type="text" class="form-control" asp-for="Valor" value="@vValor" />
+            <span asp-validation-for="Valor" class="text-danger"></span>
+        </div>
+
+        <div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:500px;">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td style="width:50px"><button type="submit" class="btn btn-block btn-success">Registrar</button></td>
+                        @if (ViewBag.Editar == "SIM")
+                        {
+                            <td style="width:50px"><button type="button" class="btn btn-block btn-primary" onclick="VoltarEditar()">Voltar</button></td>
+                        }
+                        else
+                        {
+                            <td style="width:50px"><button type="button" class="btn btn-block btn-primary" onclick="Voltar()">Voltar</button></td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<script>
+    function Voltar() {
+        window.location.href = "../Produtos/Index"
+    }
+    function VoltarEditar() {
+        window.location.href = "../Index"
+    }
+</script>
+
+
+

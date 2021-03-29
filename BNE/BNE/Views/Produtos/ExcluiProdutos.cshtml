@@ -1,0 +1,49 @@
+﻿@*<style>
+    body {
+        background-image: url('../../images/Bg.png')
+    }
+</style>*@
+<style>
+    body {
+        background-color: #a03131;
+    }
+</style>
+<div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:600px;">
+
+    <h3>Deseja Excluir o produto ?</h3>
+    <p><strong>ID:</strong> @ViewBag.Registro.Id.ToString()</p>
+    <p><strong>Data:</strong> @ViewBag.Registro.Data.ToString()</p>
+    <p><strong>FormaPagto:</strong> @ViewBag.Registro.Descricao.ToString()</p>
+
+
+
+    @{
+        var vId = 0;
+
+        try
+        {
+            vId = int.Parse(ViewBag.Registro.Id.ToString());
+        }
+        catch { }
+    }
+    <div class="container" style="background-color:rgba(239,239,239,0.95); border-radius:10px; padding:20px;width:500px;">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td style="width:50px"><button type="button" onclick="Cancelar()" class="btn btn-block btn-info">Cancelar</button></td>
+                    <td style="width:50px"><button type="button" onclick="Excluir(@vId)" class="btn btn-block btn-danger">Excluir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    <script>
+        function Excluir(id) {
+            window.location.href = "../Excluir/" + id;
+
+        }
+        function Cancelar() {
+            window.location.href = "../Index";
+        }
+
+    </script>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BNE", "BNE\BNE.csproj", "{A15942C9-6300-42FB-8A82-1B5164A8E648}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A15942C9-6300-42FB-8A82-1B5164A8E648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A15942C9-6300-42FB-8A82-1B5164A8E648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A15942C9-6300-42FB-8A82-1B5164A8E648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A15942C9-6300-42FB-8A82-1B5164A8E648}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA91D189-D5E2-48B7-91E0-80F8EA1727BE}
+	EndGlobalSection
+EndGlobal
